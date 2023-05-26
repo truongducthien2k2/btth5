@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'new_page.dart';
 
 void main() {
   runApp(FirstApp());
@@ -13,6 +14,9 @@ class FirstApp extends StatelessWidget {
         primarySwatch: Colors.blue,
       ),
       home: HomePage(),
+      routes: {
+        NewPage.routeName: (context) => NewPage(),
+      },
     );
   }
 }
@@ -65,10 +69,21 @@ class HomePage extends StatelessWidget {
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
-              Container(
-                width: 80,
-                height: 80,
-                color: Colors.red,
+              GestureDetector(
+                onTap: () {
+                  Navigator.pushNamed(context, NewPage.routeName);
+                },
+                child: Container(
+                  width: 80,
+                  height: 80,
+                  color: Colors.red,
+                  child: Center(
+                    child: Text(
+                      'P',
+                      style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+                    ),
+                  ),
+                ),
               ),
               Container(
                 width: 80,
@@ -143,21 +158,26 @@ class _ProductCardState extends State<ProductCard> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Row(
-              children: [
-                CircleAvatar(
-                  radius: 16,
-                  child: Text(
-                    widget.product.name.substring(0, 1),
-                    style: TextStyle(fontSize: 14),
+            GestureDetector(
+              onTap: () {
+                Navigator.pushNamed(context, NewPage.routeName);
+              },
+              child: Row(
+                children: [
+                  CircleAvatar(
+                    radius: 16,
+                    child: Text(
+                      widget.product.name.substring(0, 1),
+                      style: TextStyle(fontSize: 14),
+                    ),
                   ),
-                ),
-                SizedBox(width: 8.0),
-                Text(
-                  widget.product.name,
-                  style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
-                ),
-              ],
+                  SizedBox(width: 8.0),
+                  Text(
+                    widget.product.name,
+                    style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+                  ),
+                ],
+              ),
             ),
             SizedBox(height: 8.0),
             Text(
